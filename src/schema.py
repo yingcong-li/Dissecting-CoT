@@ -23,6 +23,7 @@ model_schema = {
     "hidden_layer_size": merge(tinteger, default(4)),
     "n_in_intermediate": merge(tinteger, default(0)),  # if using chain of thought, number of output intermediate steps
     "n_out_intermediate": merge(tinteger, default(0)),  # if using chain of thought, number of input intermediate steps
+    "hidden_sep_embed": merge(tboolean, default(False)),
 }
 
 curriculum_base_schema = {
@@ -48,7 +49,6 @@ training_schema = {
     "batch_size": merge(tinteger, default(64)),
     "learning_rate": merge(tfloat, default(3e-4)),
     "train_steps": merge(tinteger, default(1000)),
-    "warmup_steps": merge(tinteger, default(0)),
     "save_every_steps": merge(tinteger, default(1000)),  # how often to checkpoint
     "keep_every_steps": merge(tinteger, default(-1)),  # permanent checkpoints
     "resume_id": merge(tstring, nullable, default(None)),  # run uuid64

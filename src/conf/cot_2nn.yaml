@@ -1,0 +1,42 @@
+inherit: 
+    - base_nn.yaml
+    - models/small.yaml
+
+wandb:
+    project: cot_2nn
+    entity: your entity
+    log_every_steps: 100
+    name: small, CoT-I/O, d=10, k=4
+    notes: 
+
+model:
+    n_dims: 10
+    hidden_layer_size: 4
+    ### ICL
+    # n_in_intermediate: 0
+    # n_out_intermediate: 0
+    ### CoT-I
+    # n_in_intermediate: 1
+    # n_out_intermediate: 0
+    ### CoT-I/O
+    n_in_intermediate: 1
+    n_out_intermediate: 1
+
+training:
+    task_kwargs: 
+        ## IMPORTANT ##
+        hidden_layer_size: 4
+        n_layers: 2
+    curriculum:
+        points:
+            start: 26
+            end: 101
+            inc: 5
+            interval: 2000
+        dims:
+            start: 10
+            end: 10
+            inc: 1
+            interval: 2000
+
+out_dir: ../models/cot_2nn

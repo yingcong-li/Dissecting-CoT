@@ -14,6 +14,7 @@ def build_model(conf):
             hidden_layer_size=conf.hidden_layer_size,
             n_in_intermediate=conf.n_in_intermediate,
             n_out_intermediate=conf.n_out_intermediate,
+            hidden_sep_embed=conf.hidden_sep_embed,
         )
     else:
         raise NotImplementedError
@@ -116,9 +117,7 @@ class TransformerNN(nn.Module):
             losses += [loss_func(pred_hidden, layer_activations[i]).sum(-1).mean()]
         pred = self._read_out(output[:, self.n_out_intermediate:][:, ::x_idx_freq])
         losses += [loss_func(pred[:,:,0], ys).mean()]
-        return losses, sum(losses)
-    
-    
+        return losses, sum(losses)  
     
     def predict(self, xs, ys, layer_activations=None):
         if ((layer_activations is not None) and (self.n_in_intermediate > len(layer_activations))) \

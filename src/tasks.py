@@ -32,7 +32,7 @@ def get_task_sampler(task_name, n_dims, batch_size, **kwargs):
     }
     if task_name in task_names_to_classes:
         task_cls = task_names_to_classes[task_name]
-        return task_cls(n_dims, batch_size, **kwargs)
+        return lambda **args: task_cls(n_dims, batch_size, **args, **kwargs)
     else:
         print("Unknown task")
         raise NotImplementedError
