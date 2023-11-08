@@ -14,12 +14,13 @@ conda activate in-context-learning
 ```
 
 ## Training
-1. Enter into a specific directory ```src```
+1. Enter into directory ```src```
 2. Run ```train.py``` based on the choosen config file: ```python train.py --config conf/[config_file].yaml```
 
 ## Test
-[TO BE DONE]
-
+1. Enter into directory ```src```
+2. Refer to the ```eval.ipynb``` file
+ 
 ## Contact
 If you have any question, please contact **Yingcong Li** (<yli692@ucr.edu>)
 
